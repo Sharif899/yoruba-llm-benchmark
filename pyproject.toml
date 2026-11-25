@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "yoruba-llm-benchmark"
+version = "0.1.0"
+description = "A deterministic benchmark for evaluating LLM responses to Yoruba prompts"
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Sherif Olabode", email = "sharifninolee@gmail.com" }]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+ybench = "yoruba_benchmark.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+yoruba_benchmark = ["data/*.jsonl"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
