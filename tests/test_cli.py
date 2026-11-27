@@ -10,7 +10,7 @@ from yoruba_benchmark.cli import main
 def test_run_mock_model_a(capsys):
     assert main(["run", "--mock", "model-a"]) == 0
     out = capsys.readouterr().out
-    assert "Model: model-a (60 items)" in out
+    assert "Model: model-a (100 items)" in out
     assert "Overall" in out
     assert "Factual QA" in out
 
@@ -20,8 +20,8 @@ def test_run_mock_json_output(capsys):
     out = capsys.readouterr().out
     data = json.loads(out)
     assert data["summary"]["model"] == "model-b"
-    assert data["summary"]["n"] == 60
-    assert len(data["records"]) == 60
+    assert data["summary"]["n"] == 100
+    assert len(data["records"]) == 100
     assert data["records"][0]["item_id"] == "yb-faq-01"
 
 
@@ -71,7 +71,7 @@ def test_run_input_unknown_id(tmp_path, capsys):
 def test_compare_mocks(capsys):
     assert main(["compare", "--a", "model-a", "--b", "model-b"]) == 0
     out = capsys.readouterr().out
-    assert "Head-to-head: model-a vs model-b (60 items)" in out
+    assert "Head-to-head: model-a vs model-b (100 items)" in out
     assert "Overall" in out
 
 
@@ -94,7 +94,7 @@ def test_report_from_saved_file(tmp_path, capsys):
     capsys.readouterr()
     assert main(["report", "--input", str(out_path)]) == 0
     out = capsys.readouterr().out
-    assert "Model: model-c (60 items)" in out
+    assert "Model: model-c (100 items)" in out
     assert "Overall" in out
 
 

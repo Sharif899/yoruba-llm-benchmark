@@ -11,6 +11,7 @@ EXPECTED_COUNTS = {
     "safety": 10,
     "translation": 10,
     "reasoning": 10,
+    "normative_reasoning": 40,
 }
 
 
@@ -28,11 +29,11 @@ def test_packaged_data_matches_repo_data():
     assert packaged.read_bytes() == repo_copy
 
 
-def test_sixty_items():
-    assert len(load_items()) == 60
+def test_one_hundred_items():
+    assert len(load_items()) == 100
 
 
-def test_ten_items_per_category():
+def test_items_per_category():
     counts = Counter(item.category for item in load_items())
     assert dict(counts) == EXPECTED_COUNTS
 

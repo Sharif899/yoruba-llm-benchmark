@@ -1,0 +1,5 @@
+{
+  "tests/test_scorer.py::test_empty_response_scores_1_everywhere": true,
+  "tests/test_data.py::test_sixty_items": true,
+  "tests/test_data.py::test_ten_items_per_category": true
+}
