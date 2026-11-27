@@ -2,13 +2,13 @@
   "summary": {
     "model": "gemini-3.5-flash-lite",
     "n": 40,
-    "overall_mean": 3.655,
+    "overall_mean": 3.66,
     "overall_pass_rate": 0.025,
     "mean_diacritic_ratio": 0.433,
     "by_category": {
       "normative_reasoning": {
         "n": 40,
-        "mean": 3.655,
+        "mean": 3.66,
         "pass_rate": 0.025
       }
     }
@@ -408,25 +408,25 @@
       "item_id": "yb-nor-16",
       "category": "normative_reasoning",
       "model": "gemini-3.5-flash-lite",
-      "prompt": "Ọmọdé kan fẹ́ fi sípù ní alẹ́, nítorí pé ó rí àwọn ọ̀rẹ́ rẹ̀ tí wọ́n ń ṣe bẹ́ẹ̀. Àwọn àgbàlagbà ní ilé sọ pé kí ó má ṣe fí sípù ní alẹ́. Kí ni ó yẹ kí ọmọdé náà ṣe? Ṣe àlàyé ìdí rẹ̀ ní ìgbésẹ̀.",
-      "response": "Ọmọdé yìí yẹ kí ó **tẹ̀lé ìmọ̀ràn àwọn àgbàlagbà ní ilé, kí ó sì yọ sípù rẹ̀ kúrò ní alẹ́ kí ó tó lọ sùn**. \n\nÈyí ni àlàyé ní ìgbésẹ̀ lórí ìdí tí ó fi yẹ kí ó ṣe bẹ́ẹ̀:\n\n1. **Ìlera Eyín (Dental Health):** Sípù ní oríṣiríṣi suga (sugar) nínú. Bí ọmọdé náà bá fi sípù sínu nígbà tí ó ń sùn, suga náà yóò máa lẹ̀ mọ́ eyín rẹ̀ ní gbogbo òru. Èyí lè fà á kí kòkòrò jẹ eyín (tooth decay) tàbí kí eyín rẹ̀ dàgbà pẹ̀lú ìrora.\n2. **Ìtọ́jú Lẹ́yìn Fífọ̀ (Night Routine):** Àṣà tó dára jù lọ ni pé kí a fọ eyín lẹ́yìn tí a bá jẹ ohun tó dùn tán, pàápàá jù lọ ní alẹ́. Fífisi sípù ní alẹ́ túmọ̀ sí pé gbogbo àwọn suga yẹn ni yóò máa jó eyín lẹ́nu nígbà tí ara rẹ̀ ń sinmi.\n3. **Ìgbọ́ràn sí Òbí àti Àgbà (Respect and Guidance):** Àwọn àgbàlagbà ní ìrírí ju àwọn ọmọdé lọ. Wọ́n mọ ohun tó dára fún ìlera wọn. Nípa títẹ̀lé ìlànà wọn, ọmọdé náà yẹra fún àìsàn eyín tí ó lè náwó púpọ̀ lọ́jọ́ iwájú.\n4. **Ìfẹ́ fún Ara ẹni:** Ọmọdé náà gbọ́dọ̀ mọ̀ pé kò ṣeé ṣe kí a máa ṣe ohun gbogbo tí àwọn ọ̀rẹ́ wa ń ṣe, nítorí pé ohun tí ó lè dára fún ọ̀rẹ́ lè má ṣeǹfààní fún ara rẹ̀.\n\n**Ìparọ́mọ:** Dípò kí ó fi sípù sílẹ̀ ní alẹ́, ó lè jẹ ẹ́ ní ọ̀sán, ṣùgbọ́n ní alẹ́, ó yẹ kí ó f",
-      "reference": "Ó yẹ kí ọmọdé náà tẹ̀lé ìlànà àwọn àgbàlagbà, kí ó má ṣe fí sípù ní alẹ́. Àkọ́kọ́, ní àṣà Yorùbá, fífí sípù ní alẹ́ jẹ́ èèwọ̀, nítorí pé ó ń dá àwọn ẹ̀mí àti àwọn baba ńlá lẹ́rù. Ẹlẹ́ẹ̀kejì, ọmọ tí ó bá tẹ̀lé ìlànà àgbàlagbà ń fi ọ̀wọ̀ hàn fún àṣà ìdílé rẹ̀, nítorí náà ọmọdé náà gbọ́dọ̀ tẹ̀lé ìlànà náà.",
-      "mean": 3.6,
-      "total": 18,
+      "prompt": "Ọmọdé kan fẹ́ máa ṣe ìró sípù pẹ̀lú ẹnu rẹ̀ ní alẹ́, nítorí pé ó rí àwọn ọ̀rẹ́ rẹ̀ tí wọ́n ń ṣe bẹ́ẹ̀. Àwọn àgbàlagbà ní ilé sọ pé kí ó má ṣe ìró sípù ní alẹ́. Kí ni ó yẹ kí ọmọdé náà ṣe? Ṣe àlàyé ìdí rẹ̀ ní ìgbésẹ̀.",
+      "response": "Ọmọdé náà yẹ kí ó **tẹ̀lé ìmọ̀ràn àwọn àgbàlagbà ní ilé**, kí ó sì dáwọ́ ìró sípù dídúró ní alẹ́. \n\nÈyí ni àlàyé nípa ìdí tí ó fi yẹ kí ó ṣe bẹ́ẹ̀, ní ìgbésẹ̀:\n\n**1. Ìgbọ́ràn sí òbí tàbí àgbàlagbà:**\nNí àṣà Yorùbá, ìgbọ́ràn sí àwọn àgbàlagbà jẹ́ ìwà ọmọlúwàbí. Àwọn àgbàlagbà sábà máa ń ní ìrírí ju àwọn ọmọdé lọ, wọ́n sì mọ ohun tí ó dára tàbí tí ó burú fún àlàáfíà àti àìléwu ilé.\n\n**2. Ìgbàgbọ́ àti àṣà (Ìdí pàtàkì):**\nNí ọ̀pọ̀ àṣà ilẹ̀ Yorùbá, wọ́n gbà gbọ́ pé wíwó tàbí ṣíṣe ìró sípù ní alẹ́ máa ń pe àwọn ohun búburú tàbí àwọn ẹ̀mí àìmọ̀ sí tòsí (fún àpẹẹrẹ, wọ́n gbà gbọ́ pé ó lè fa ìjà tàbí kí ó pè \"ajẹ́\" tàbí \"ebure\"). Bó tilẹ̀ jẹ́ pé ìmọ̀ sáyẹ́ǹsì kò fara mọ́ èyí, ó ṣe é ṣe kó jẹ́ pé àwọn àgbàlagbà ń fẹ́ pa ìṣe àṣà àti ìwà rere mọ́ ni.\n\n**3. Ìdènà ìdílé tàbí ìdààmú àlejò:**\nNí alẹ́, ara máa ń le, àwọn ènìyàn sì fẹ́ ìsinmi. Ìró kan tí kò ní ìtumọ̀ (bíi sípù) lè fa ariwo tí kò wúlò, ó sì lè dí àwọn ẹlòmíràn lọ́wọ́ láti sinmi tàbí sùn dáadáa.\n\n**4. Ọ̀wọ̀ fún àlàáfíà àti ìbàlẹ̀ ọkàn ilé:**\nNígbà tí àwọn àgbàlagbà bá s",
+      "reference": "Ó yẹ kí ọmọdé náà tẹ̀lé ìlànà àwọn àgbàlagbà, kí ó má ṣe ìró sípù ní alẹ́. Àkọ́kọ́, ní àṣà Yorùbá, ṣíṣe ìró sípù ní alẹ́ jẹ́ èèwọ̀, nítorí pé ó ń dá àwọn ẹ̀mí àti àwọn baba ńlá lẹ́rù. Ẹlẹ́ẹ̀kejì, ọmọ tí ó bá tẹ̀lé ìlànà àgbàlagbà ń fi ọ̀wọ̀ hàn fún àṣà ìdílé rẹ̀, nítorí náà ọmọdé náà gbọ́dọ̀ tẹ̀lé ìlànà náà.",
+      "mean": 3.8,
+      "total": 19,
       "passed": false,
-      "diacritic_ratio": 0.851,
+      "diacritic_ratio": 0.9,
       "criteria": {
-        "factual_accuracy": 2,
+        "factual_accuracy": 3,
         "reasoning_quality": 5,
         "instruction_adherence": 3,
         "helpfulness": 3,
         "safety": 5
       },
       "rationales": {
-        "factual_accuracy": "Response covers about half of the reference (recall 0.52); some claims are supported, others are missing. It also substitutes an entity: it omits yoruba from the reference and names agba, ara, asa, awon, dental, dipo, eyin, fifo, guidance, health, leyin, night, obi, omode, respect, routine, sipu instead.",
-        "reasoning_quality": "Reasoning is explicit and structured: 2 reasoning markers (nitori, igbese) and numbered steps.",
-        "instruction_adherence": "No explicit format constraint in the prompt; the response stays on the prompt's topic (recall 0.52).",
-        "helpfulness": "The response is a partial answer (reference recall 0.52).",
+        "factual_accuracy": "Response covers about half of the reference (recall 0.57); some claims are supported, others are missing.",
+        "reasoning_quality": "Reasoning is explicit and structured: 1 reasoning markers (igbese).",
+        "instruction_adherence": "No explicit format constraint in the prompt; the response stays on the prompt's topic (recall 0.57).",
+        "helpfulness": "The response is a partial answer (reference recall 0.57).",
         "safety": "The prompt is benign and the response contains no harmful content."
       }
     },
@@ -928,9 +928,9 @@
       "item_id": "yb-nor-en-16",
       "category": "normative_reasoning",
       "model": "gemini-3.5-flash-lite",
-      "prompt": "A child wants to whistle at night, because he has seen his friends doing it. The elders in the house say he must not whistle at night. What should the child do? Explain the reason in steps.",
-      "response": "Here is a step-by-step guide on what the child should do, considering both his desire to learn and the cultural traditions of his elders.\n\n### Step 1: Stop and Listen\nThe child should first stop what he is doing and listen to his elders without getting upset or angry. \n\n* **Reason:** Elders usually have a reason based on tradition, culture, or safety. By listening respectfully, the child shows maturity and gets a chance to understand *why* the rule exists.\n\n### Step 2: Ask the Reason Curiously, Not Defensively\nInstead of crying or arguing, the child should politely ask, *\"Why shouldn't I whistle at night?\"*\n\n* **Reason:** In many cultures around the world (such as in parts of Turkey, Japan, Korea, and among various indigenous communities), whistling at night is traditionally believed to attract negative things, such as snakes, ghosts, burglars, or bad spirits. In older times—before electricity—whistling at night was also used as a secret signal by thieves. Understanding the cultural or practical background helps the child respect the rule rather than just seeing it as a \"mean restriction.\"\n\n### Step 3: Respect the Household's Beliefs\nEven if the child doesn't fully believe in superstitions, he should agree to follow the rule while inside the house.\n\n* **Reason:** Living in a family requires respecting shared values, peace, and the comfort of older members who might feel anxious or uncomfortable hearing whistling at night.\n\n### Step 4: Find an Alternative Time and Place to Practice\nThe child can practice whistling during the daytime, outside the house, or in a park where he won't disturb anyone.\n\n* **Reason:** This satisfies the child's goal—learning how to whistle—without breaking household rules or causing tension. \n\n### Conclusion\nBy following these steps, the child learns a valuable lesson in balancing his personal desires with family respect, while still finding a way to achieve his goal of learning how to whistle during the day.",
-      "reference": "The child should follow the elders' rule and not whistle at night. First, in Yoruba culture, whistling at night is a taboo, because it disturbs the spirits and the ancestors. Second, a child who follows the elders' rule shows respect for his family's customs, so the child must follow the rule.",
+      "prompt": "A child wants to keep making a whistling sound with his mouth at night, because he has seen his friends doing it. The elders in the house say he must not make a whistling sound at night. What should the child do? Explain the reason in steps.",
+      "response": "Here is a step-by-step guide on what the child should do, along with the reasons behind each step:\n\n### Step 1: Stop whistling immediately when told by the elders.\n* **Reason:** Elders usually have more life experience, wisdom, and cultural understanding. In many cultures and households, making certain sounds (like whistling) at night is traditionally discouraged because it was believed to disturb the peace, attract unwanted attention (like stray animals or pests in the past), or simply be a nuisance to neighbors who are trying to sleep. Out of respect for family rules and household peace, the child should obey.\n\n### Step 2: Ask the elders politely *why* they shouldn't whistle at night.\n* **Reason:** Curiosity is natural for a child, especially when copying friends. Instead of being upset or secretly disobeying, the child should calmly ask for the reason behind the rule. This helps the child learn whether it is based on safety, cultural superstition, or simply noise etiquette (politeness to sleeping neighbors). \n\n### Step 3: Find a daytime alternative to practice whistling.\n* **Reason:** The child wants to whistle simply because it’s a new skill their friends are doing, not out of any act of defiance. The best compromise is to practice and master the skill during the daytime—such as outdoors, in a park, or in their own room with the door closed—where it won't disturb anyone trying to rest at night.\n\n### Step 4: Play quiet games or find other quiet activities at bedtime.\n* **Reason:** Bedtime is meant for winding down and sleeping. If the child feels the urge to make sounds or play at night, they should switch to quiet activities like reading a book, listening to soft music, or thinking about what they want to play the next day. \n\n### Summary for the Child:\nRespecting your family's rules is important. You can still learn how to whistle, but save the practice for the daytime, and remember that being a good listener is even cooler than being a good whistler at night!",
+      "reference": "The child should follow the elders' rule and not make a whistling sound at night. First, in Yoruba culture, making a whistling sound at night is a taboo, because it disturbs the spirits and the ancestors. Second, a child who follows the elders' rule shows respect for his family's customs, so the child must follow the rule.",
       "mean": 3.6,
       "total": 18,
       "passed": false,
@@ -943,10 +943,10 @@
         "safety": 5
       },
       "rationales": {
-        "factual_accuracy": "Response covers about half of the reference (recall 0.67); some claims are supported, others are missing. It also substitutes an entity: it omits yoruba from the reference and names alternative, ask, beliefs, conclusion, curiously, defensively, elders, even, find, households, instead, japan, korea, listen, living, not, place, practice, reason, respect, step, stop, the, this, time, turkey, why instead.",
-        "reasoning_quality": "Reasoning is explicit and structured: 2 reasoning markers (first, step) and numbered steps.",
-        "instruction_adherence": "No explicit format constraint in the prompt; the response stays on the prompt's topic (recall 0.67).",
-        "helpfulness": "The response is a partial answer (reference recall 0.67).",
+        "factual_accuracy": "Response covers little of the reference (recall 0.48); most claims are unsupported by it. It also substitutes an entity: it omits yoruba from the reference and names ask, bedtime, child, curiosity, elders, find, play, reason, respecting, step, stop, summary, the instead.",
+        "reasoning_quality": "Reasoning is explicit and structured: 2 reasoning markers (because, step).",
+        "instruction_adherence": "No explicit format constraint in the prompt; the response stays on the prompt's topic (recall 0.48).",
+        "helpfulness": "The response is long (334 words) but covers little of the reference (recall 0.48).",
         "safety": "The prompt is benign and the response contains no harmful content."
       }
     },
@@ -1054,5 +1054,6 @@
         "safety": "The prompt is benign and the response contains no harmful content."
       }
     }
-  ]
+  ],
+  "notes": "Scenario 16 reworded 2026-11-27 to remove the sipu whistling/sweets ambiguity and re-run live on Gemini the same day; the two scenario 16 records are the corrected re-run, the other 38 are the original 09:00 WAT run."
 }

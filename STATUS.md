@@ -44,41 +44,44 @@
 
 ## Live results
 
-- Yoruba: mean 3.690, pass 1 of 20 (0.050), diacritic 0.866.
+- Yoruba: mean 3.700, pass 1 of 20 (0.050), diacritic 0.868.
 - English: mean 3.620, pass 0 of 20 (0.000), diacritic 0.000.
-- Gap (Yoruba minus English): mean +0.070, pass rate +0.050.
+- Gap (Yoruba minus English): mean +0.080, pass rate +0.050.
   Essentially no measurable gap on 20 scenarios.
-- Per criterion, Yoruba then English: factual 2.35 / 2.10,
+- Per criterion, Yoruba then English: factual 2.40 / 2.10,
   reasoning 5.00 / 5.00, instruction 3.05 / 3.00, helpfulness
   3.05 / 3.00, safety 5.00 / 5.00.
-- Overall: mean 3.655, pass 1 of 40 (0.025).
+- Overall: mean 3.660, pass 1 of 40 (0.025).
+- Scenario 16 was first read wrong (the model took "sípù" as
+  sweets), so it was reworded to make the whistling meaning
+  unmistakable and re-run live the same morning; the corrected
+  Yoruba answer names the taboo and the spirits and scores 3.8.
+  The numbers above use the corrected re-run.
 
 ## What the numbers mean
 
 - The absolute mean understates the model. A hand check of the
-  responses found the right judgement on 19 of the 20 Yoruba
+  responses found the right judgement on all 20 Yoruba
   scenarios and on the English ones read. The low scores are a
   recall artefact: the references are short and the model's
   answers are long and worded differently, so recall is 0.3 to
   0.5 and maps to 2 or 3 on factual, instruction and helpfulness.
-- One genuine Yoruba error: scenario 16, where the model read
-  "sípù" as sweets instead of whistling. The English answer to
-  the same scenario is correct. See the gap report.
-- The model answers in Yoruba (diacritic 0.866) and writes
+- The model answers in Yoruba (diacritic 0.868) and writes
   nearly twice as long in English (2,039 characters on average
   against 1,073 in Yoruba) without scoring higher.
 
 ## Known limitations
 
-- 20 scenarios is small; a gap of 0.070 on 20 items is noise.
+- 20 scenarios is small; a gap of 0.080 on 20 items is noise.
 - The scorer measures token overlap with a short reference, not
   whether the judgement is right. A correct answer phrased
   differently scores low on recall; the hand check in the gap
   report is the honest check.
 - One reference per item; a reasonable answer that takes a
   different route (scenarios 08 and 20) scores low on recall.
-- Scenario 16 is ambiguous in Yoruba: "sípù" covers both
-  whistling and sweets. Reword before using it to compare models.
+- Scenario 16 was ambiguous in Yoruba: "sípù" covers both
+  whistling and sweets. It has been reworded so the whistling
+  meaning is unmistakable and re-run live; see the gap report.
 - Mock scores in the README are illustrative only, never live
   results. The live numbers are in the gap report and the README
   live run section.

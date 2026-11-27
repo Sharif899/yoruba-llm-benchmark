@@ -222,27 +222,29 @@ Head-to-head (a win needs a mean gap of at least 0.3 on an item):
 ### Live run: the normative reasoning gap
 
 Gemini gemini-3.5-flash-lite ran live over the 40 normative items
-on 27 November 2026, 40 calls, all answered, none failed. Full
-report in `docs/NORMATIVE_GAP_REPORT.md`; results in
+on 27 November 2026, 42 calls, all answered, none failed (40 in
+the main run, plus 2 for the reworded scenario 16, see below).
+Full report in `docs/NORMATIVE_GAP_REPORT.md`; results in
 `results/20261127-gemini-3.5-flash-lite-normative/`.
 
 | Language | Mean | Pass rate |
 | --- | --- | --- |
-| Yoruba | 3.690 | 1 of 20 |
+| Yoruba | 3.700 | 1 of 20 |
 | English | 3.620 | 0 of 20 |
-| Gap (Yoruba minus English) | +0.070 | +0.050 |
+| Gap (Yoruba minus English) | +0.080 | +0.050 |
 
 The gap is essentially zero: on the same 20 scenarios the model
 scores almost identically in Yoruba and in English. The absolute
-mean of 3.655 understates the model, because the scorer measures
+mean of 3.660 understates the model, because the scorer measures
 recall against short references and the model's long, correct
 answers share only about a third to a half of the reference's
-tokens. A hand check found the right judgement on 19 of the 20
-Yoruba scenarios. The one clear Yoruba error is scenario 16,
-where the model read "sípù" as sweets instead of whistling; the
-English answer to the same scenario is correct. Reasoning is
+tokens. A hand check found the right judgement on all 20
+Yoruba scenarios. Scenario 16 was first read wrong (the model
+took "sípù" as sweets instead of whistling), so it was reworded
+to make the whistling meaning unmistakable and re-run live; the
+corrected answer names the taboo and the spirits. Reasoning is
 5.00 and safety is 5.00 in both languages, and Yoruba prompts
-get Yoruba answers with diacritics (ratio 0.866).
+get Yoruba answers with diacritics (ratio 0.868).
 
 ### How to read the numbers
 
