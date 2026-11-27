@@ -140,6 +140,21 @@ def test_reasoning_neutral_when_not_asked():
     assert _scores(result)["reasoning_quality"] == 3
 
 
+def test_reasoning_english_first_counts_as_step():
+    # "First, ... Second, ..." is step-by-step reasoning in English,
+    # the same move as "Àkọ́kọ́, Ẹlẹ́ẹ̀kejì, ..." in Yoruba. A paired
+    # Yoruba/English set must not score one language's steps higher
+    # than the other's.
+    result = score_response(
+        "Why should Ade greet the elder? Explain in steps.",
+        "Ade should greet the elder. First, greeting shows respect. "
+        "Second, passing without greeting looks like disrespect.",
+        "Ade should greet the elder. First, greeting shows respect. "
+        "Second, passing without greeting looks like disrespect.",
+    )
+    assert _scores(result)["reasoning_quality"] == 5
+
+
 def test_reasoning_no_markers_scores_2():
     result = score_response(
         "Kílódé tí òjò fi ń rọ̀?",

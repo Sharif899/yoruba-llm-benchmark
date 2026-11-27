@@ -1,7 +1,7 @@
 """Deterministic rubric scoring for Yoruba LLM responses.
 
 A response is scored 1-5 on each of five criteria, with a short
-structured rationale for every score — the rationale must say *why*,
+structured rationale for every score. The rationale must say *why*,
 citing specific evidence from the response, not just restate the
 score. A pairwise comparison reuses the same rubric scores, so a
 pairwise judgement and a rubric judgement of the same response can
@@ -319,7 +319,15 @@ def _score_reasoning(prompt: str, response: str) -> CriterionScore:
         )
     folded_resp = fold(response)
     markers = [m for m in _REASONING_MARKERS if m in folded_resp]
-    has_steps = bool(re.search(r"(?m)^\s*\d+[.)]", response)) or "akoko" in folded_resp
+    # A step is a numbered list, the Yoruba "Àkọ́kọ́" (first), or the
+    # English "First": the three are the same discourse move in
+    # different languages, and a paired Yoruba/English set must not
+    # score one language's steps higher than the other's.
+    has_steps = (
+        bool(re.search(r"(?m)^\s*\d+[.)]", response))
+        or "akoko" in folded_resp
+        or "first" in folded_resp
+    )
     word_count = len(tokens(response))
     if markers and (has_steps or word_count >= 60):
         return CriterionScore("reasoning_quality", 5,

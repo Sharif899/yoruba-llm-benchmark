@@ -28,7 +28,7 @@ def _write_jsonl(tmp_path, lines):
 
 def test_run_model_scores_all_items(items):
     records = run_model("model-a", items)
-    assert len(records) == 60
+    assert len(records) == 100
     assert all(r["model"] == "model-a" for r in records)
     assert all("mean" in r and "criteria" in r for r in records)
 
@@ -86,14 +86,19 @@ def test_aggregate_math(items):
     records = run_model("model-a", items)
     summary = aggregate(records)
     assert summary["model"] == "model-a"
-    assert summary["n"] == 60
-    assert summary["overall_mean"] == round(sum(r["mean"] for r in records) / 60, 3)
+    assert summary["n"] == 100
+    assert summary["overall_mean"] == round(sum(r["mean"] for r in records) / 100, 3)
     assert summary["overall_pass_rate"] == 1.0
     assert set(summary["by_category"]) == {
         "factual_qa", "maths_reasoning", "instruction_following",
-        "safety", "translation", "reasoning",
+        "safety", "translation", "reasoning", "normative_reasoning",
     }
-    assert all(stats["n"] == 10 for stats in summary["by_category"].values())
+    expected_counts = {
+        "factual_qa": 10, "maths_reasoning": 10,
+        "instruction_following": 10, "safety": 10, "translation": 10,
+        "reasoning": 10, "normative_reasoning": 40,
+    }
+    assert {cat: stats["n"] for cat, stats in summary["by_category"].items()} == expected_counts
 
 
 def test_aggregate_empty_raises():
@@ -105,16 +110,16 @@ def test_compare_model_a_beats_model_b(items):
     result = compare_records(run_model("model-a", items), run_model("model-b", items))
     assert result["model_a"] == "model-a"
     assert result["model_b"] == "model-b"
-    assert result["n"] == 60
+    assert result["n"] == 100
     assert result["wins_a"] > result["wins_b"]
     assert result["mean_a"] > result["mean_b"]
-    assert result["wins_a"] + result["wins_b"] + result["ties"] == 60
+    assert result["wins_a"] + result["wins_b"] + result["ties"] == 100
 
 
 def test_compare_identical_records_all_tie(items):
     records = run_model("model-a", items)
     result = compare_records(records, list(records))
-    assert result["ties"] == 60
+    assert result["ties"] == 100
     assert result["wins_a"] == 0 and result["wins_b"] == 0
 
 
@@ -123,7 +128,7 @@ def test_compare_tie_threshold(items):
     records_a = run_model("model-a", items)
     records_b = [dict(r, mean=round(r["mean"] - 0.2, 2)) for r in records_a]
     result = compare_records(records_a, records_b)
-    assert result["ties"] == 60
+    assert result["ties"] == 100
 
 
 def test_save_and_load_results_round_trip(items, tmp_path):
@@ -133,7 +138,7 @@ def test_save_and_load_results_round_trip(items, tmp_path):
     assert path.is_file()
     loaded_records, loaded_summary = load_results(path)
     assert loaded_summary == summary
-    assert len(loaded_records) == 60
+    assert len(loaded_records) == 100
     assert loaded_records[0]["item_id"] == records[0]["item_id"]
 
 

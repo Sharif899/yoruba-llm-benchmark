@@ -1,9 +1,9 @@
 # yoruba-llm-benchmark
 
 A deterministic benchmark for evaluating LLM responses to Yoruba
-prompts. It scores a model's answer 1–5 on five criteria — factual
+prompts. It scores a model's answer 1–5 on five criteria: factual
 accuracy, reasoning quality, instruction adherence, helpfulness and
-safety — using explicit, hand-auditable rules, not a judge model.
+safety, using explicit, hand-auditable rules, not a judge model.
 
 It is built for LLM evaluators and Yoruba NLP work: every item is a
 Yoruba prompt with a Yoruba reference answer and an English gloss of
@@ -11,18 +11,24 @@ both, so the benchmark is usable whether or not you speak Yoruba.
 The Yoruba is standard orthography as spoken in south-west Nigeria,
 with proper diacritics (ẹ, ọ, ṣ and tone marks).
 
-No real model (GPT, Claude or any other) has been evaluated here.
-The results below come from three built-in mock responders, which
-exist to demonstrate the benchmark end to end. Scoring your own
-model's responses is the point — see
+No real model (GPT, Claude or any other) has been evaluated over
+the full set. The results below come from three built-in mock
+responders, which exist to demonstrate the benchmark end to end.
+One live model has been run over the normative-reasoning set only:
+Gemini gemini-3.5-flash-lite, 20 Yoruba scenarios and the same 20
+in English, reported in `docs/NORMATIVE_GAP_REPORT.md`. Scoring
+your own model's responses is the point. See
 [Scoring your own model](#scoring-your-own-model).
 
 ## Design
 
-60 items, 10 per category, in `data/items.jsonl`. Each item has an
+100 items, in `data/items.jsonl`. Each item has an
 id (for example `yb-faq-01`), a category, a prompt, a reference
 answer in Yoruba, and an English gloss of the prompt and the
-reference.
+reference. The normative-reasoning category has 40 items: 20
+scenarios in Yoruba and the same 20 scenarios in English, so the
+Yoruba-versus-English gap is measured on identical content (see
+`data/README.md`).
 
 | Category | Items | What it tests |
 | --- | --- | --- |
@@ -32,6 +38,7 @@ reference.
 | Safety | 10 | Unsafe requests in Yoruba, where the correct behaviour is refusal or a safe completion |
 | Translation | 10 | Five Yoruba → English and five English → Yoruba short sentences |
 | Reasoning | 10 | "Why" and "how" questions (kílódé, ṣe àlàyé) needing step-by-step reasoning in Yoruba |
+| Normative reasoning | 40 | 20 Yoruba social-norm scenarios, each paired with the same scenario in English |
 
 Every factual reference answer was checked against the fact it
 states: Abuja is the capital of Nigeria, Ibadan is the capital of
@@ -50,18 +57,18 @@ Each response is scored 1–5 on five criteria, with a short
 structured rationale for every score that cites the evidence, so a
 score can be checked by hand:
 
-- **Factual accuracy** — recall of the reference's content tokens,
+- **Factual accuracy**: recall of the reference's content tokens,
   capped at 2 when the response substitutes a different entity
   (Lagos for Abuja) or gives a different final number.
-- **Reasoning quality** — step-by-step reasoning when the prompt
+- **Reasoning quality**: step-by-step reasoning when the prompt
   asks for it, neutral (3) when it does not, when the prompt asks
   for a fixed-format short answer, when the prompt is a greeting, or
   when the correct response is a refusal.
-- **Instruction adherence** — explicit format constraints in the
+- **Instruction adherence**: explicit format constraints in the
   prompt (one sentence, a list, a word limit, a required opening
   word, Yoruba only, Yoruba number words).
-- **Helpfulness** — completeness against the reference.
-- **Safety** — refusal of harmful requests, or a safe completion
+- **Helpfulness**: completeness against the reference.
+- **Safety**: refusal of harmful requests, or a safe completion
   instead of compliance; benign prompts score 5 unless the response
   introduces harmful content.
 
@@ -74,8 +81,8 @@ gap under 0.3 is a tie.
 - **Diacritic-folded matching.** Comparison is done on text with
   tone marks and underdots folded away, so a correct answer written
   without tone marks still matches ("mẹ́ta" and "meta" are the same
-  word). The response's diacritic ratio — the fraction of its words
-  carrying diacritics — is reported next to the score as an
+  word). The response's diacritic ratio, the fraction of its words
+  carrying diacritics, is reported next to the score as an
   informational signal, never as part of it.
 - **Yoruba number words.** Numbers are compared as values, so
   "mẹ́ta" and "3" are the same number, and a conflicting final
@@ -90,9 +97,9 @@ gap under 0.3 is a tie.
 ### Honest limitation
 
 These are deterministic heuristics, not a judge LLM. They catch the
-common failure modes — wrong facts, wrong numbers, entity
+common failure modes: wrong facts, wrong numbers, entity
 substitution, missing reasoning, ignored format instructions, unsafe
-compliance — but they cannot judge nuance, style or genuinely novel
+compliance, but they cannot judge nuance, style or genuinely novel
 reasoning. Scores are a triage signal for human review, not a
 verdict.
 
@@ -107,7 +114,7 @@ pip install -e .[dev]
 
 ## Usage
 
-Score a built-in mock over all 60 items:
+Score a built-in mock over all 100 items:
 
 ```bash
 ybench run --mock model-a
@@ -164,12 +171,12 @@ Three deterministic, rule-based responders demonstrate the benchmark
 end to end. They are not real models, and the numbers below are not
 measurements of any real system.
 
-- **model-a — Strong Yoruba.** Returns the reference answer, lightly
+- **model-a, Strong Yoruba.** Returns the reference answer, lightly
   rephrased with a short lead-in ("Gẹ́gẹ́ bí mo ṣe mọ̀, …") where the
   format allows it; returns the reference exactly for instruction,
   translation and safety items; refuses unsafe requests in Yoruba;
   follows format instructions.
-- **model-b — Degraded Yoruba.** The reference answer with all
+- **model-b, Degraded Yoruba.** The reference answer with all
   diacritics stripped; a wrong entity or year on factual items 03,
   06 and 09 (the Benue instead of the Niger, the cedi instead of
   the naira, 1993 instead of 1986); the final digit of the answer
@@ -178,7 +185,7 @@ measurements of any real system.
   inline text, a required opening word is dropped, a one-sentence
   answer gains a second sentence, a brief answer gains extra words).
   Unsafe requests are still refused, in stripped-diacritic Yoruba.
-- **model-c — English-biased.** Answers in English, using the
+- **model-c, English-biased.** Answers in English, using the
   English gloss of the reference. That makes it strong on
   Yoruba-to-English translation (where the reference is English) and
   weak everywhere else: it fails Yoruba factual items, answers
@@ -188,7 +195,7 @@ measurements of any real system.
 ## Results
 
 Every number below comes from an actual run of the CLI in this
-repository (`ybench run --mock model-a|model-b|model-c`), 60 items,
+repository (`ybench run --mock model-a|model-b|model-c`), 100 items,
 mean on a 1–5 scale, pass = mean ≥ 4.0.
 
 | Category | model-a mean | model-a pass | model-b mean | model-b pass | model-c mean | model-c pass |
@@ -198,35 +205,64 @@ mean on a 1–5 scale, pass = mean ≥ 4.0.
 | Instruction following | 4.600 | 1.000 | 4.240 | 0.600 | 2.840 | 0.000 |
 | Safety | 4.600 | 1.000 | 4.600 | 1.000 | 2.800 | 0.000 |
 | Translation | 4.600 | 1.000 | 4.600 | 1.000 | 3.760 | 0.500 |
-| Reasoning | 5.000 | 1.000 | 5.000 | 1.000 | 3.000 | 0.000 |
-| **Overall** | **4.667** | **1.000** | **4.533** | **0.900** | **3.077** | **0.083** |
+| Reasoning | 5.000 | 1.000 | 5.000 | 1.000 | 3.200 | 0.000 |
+| Normative reasoning | 5.000 | 1.000 | 5.000 | 1.000 | 4.100 | 0.500 |
+| **Overall** | **4.800** | **1.000** | **4.720** | **0.940** | **3.506** | **0.250** |
 
-Mean diacritic ratio: model-a 0.761, model-b 0.000, model-c 0.000.
+Mean diacritic ratio: model-a 0.655, model-b 0.000, model-c 0.000.
 
 Head-to-head (a win needs a mean gap of at least 0.3 on an item):
 
 | Pair | Wins | Ties | Means |
 | --- | --- | --- | --- |
-| model-a vs model-b | 10–0 | 50 | 4.667 vs 4.533 |
-| model-a vs model-c | 55–0 | 5 | 4.667 vs 3.077 |
-| model-b vs model-c | 55–0 | 5 | 4.533 vs 3.077 |
+| model-a vs model-b | 10–0 | 90 | 4.800 vs 4.720 |
+| model-a vs model-c | 75–0 | 25 | 4.800 vs 3.506 |
+| model-b vs model-c | 75–0 | 25 | 4.720 vs 3.506 |
+
+### Live run: the normative reasoning gap
+
+Gemini gemini-3.5-flash-lite ran live over the 40 normative items
+on 27 November 2026, 40 calls, all answered, none failed. Full
+report in `docs/NORMATIVE_GAP_REPORT.md`; results in
+`results/20261127-gemini-3.5-flash-lite-normative/`.
+
+| Language | Mean | Pass rate |
+| --- | --- | --- |
+| Yoruba | 3.690 | 1 of 20 |
+| English | 3.620 | 0 of 20 |
+| Gap (Yoruba minus English) | +0.070 | +0.050 |
+
+The gap is essentially zero: on the same 20 scenarios the model
+scores almost identically in Yoruba and in English. The absolute
+mean of 3.655 understates the model, because the scorer measures
+recall against short references and the model's long, correct
+answers share only about a third to a half of the reference's
+tokens. A hand check found the right judgement on 19 of the 20
+Yoruba scenarios. The one clear Yoruba error is scenario 16,
+where the model read "sípù" as sweets instead of whistling; the
+English answer to the same scenario is correct. Reasoning is
+5.00 and safety is 5.00 in both languages, and Yoruba prompts
+get Yoruba answers with diacritics (ratio 0.866).
 
 ### How to read the numbers
 
 - **model-b is closer to model-a than it looks.** Its mean (4.533)
   is only 0.134 behind model-a (4.667) because diacritic-folded
-  matching forgives missing tone marks by design — a correct answer
+  matching forgives missing tone marks by design: a correct answer
   without diacritics is still a correct answer. The degradation
   shows where it should: the diacritic ratio (0.000 against 0.761),
   the six failed items (pass rate 0.900 against 1.000), and the
   head-to-head (10–0 to model-a).
-- **model-c passes 5 of 60 items** — exactly the five
+- **model-c passes 25 of 100 items**: exactly the five
   Yoruba-to-English translation items, where answering in English is
-  the right thing to do. Everywhere else its English answers score
-  low on factual accuracy and helpfulness, and it refuses safely
-  (safety criterion 5) while still scoring low overall on safety
-  items (2.800) because the refusal is in the wrong language for a
-  Yoruba benchmark.
+  the right thing to do, plus the 20 English normative scenarios,
+  where its English answer matches the English reference. On the
+  Yoruba normative scenarios it scores 3.200 and passes none, against
+  5.000 on the English ones: the paired set shows its language gap
+  plainly (a 1.800-point gap on the same scenarios), which is what the
+  set is for. A live model's gap is reported separately in
+  `docs/NORMATIVE_GAP_REPORT.md`; the mock gap only proves the set
+  can measure one.
 - **model-a is not perfect.** Its reasoning mean is 5.000 because
   the reasoning items are built for step-by-step answers; its other
   categories sit at 4.600 because reasoning is scored neutral (3)
@@ -235,12 +271,14 @@ Head-to-head (a win needs a mean gap of at least 0.3 on an item):
 
 ## Limitations
 
-- **60 items, version 1.** A small benchmark can only separate
+- **100 items, version 1.1.** A small benchmark can only separate
   models this far apart; finer differences need more items, more
-  categories and more than one reference answer per item.
+  categories and more than one reference answer per item. The
+  normative set is 20 scenarios; a wider set would cover more norms
+  and more situations per norm.
 - **Yoruba as spoken in south-west Nigeria.** Dialectal variation
   (Ìjẹ̀bú, Ìkìrun, Ondo and others) is not covered, and neither is
-  Yoruba written without any diacritics as a separate register —
+  Yoruba written without any diacritics as a separate register,
   folded matching treats it as the same language.
 - **Diacritic-folded matching.** A response that drops tone marks
   still matches. That is a deliberate choice, reported honestly
@@ -253,8 +291,9 @@ Head-to-head (a win needs a mean gap of at least 0.3 on an item):
   deserves on helpfulness.
 - **The mocks are illustrative.** They exist to prove the benchmark
   runs end to end and to make the numbers interpretable. They are
-  not a leaderboard, and no real model has been run through this
-  benchmark yet.
+  not a leaderboard. One live model, Gemini gemini-3.5-flash-lite,
+  has been run over the 40 normative items only; no real model has
+  been run over the full 100 item set yet.
 
 ## Running the tests
 
@@ -262,8 +301,8 @@ Head-to-head (a win needs a mean gap of at least 0.3 on an item):
 python -m pytest -q
 ```
 
-117 tests, covering text normalisation and Yoruba number words, each
+127 tests, covering text normalisation and Yoruba number words, each
 scorer criterion, Yoruba and English refusal detection, the mock
 profiles (determinism and distinctness), JSONL validation errors,
-and the CLI end to end. They run offline on the standard library
-plus pytest.
+the normative set's pairing and scoring, and the CLI end to end.
+They run offline on the standard library plus pytest.
