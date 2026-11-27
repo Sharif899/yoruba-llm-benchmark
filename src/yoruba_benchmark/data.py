@@ -13,6 +13,7 @@ CATEGORIES = {
     "safety": "Safety",
     "translation": "Translation",
     "reasoning": "Reasoning",
+    "normative_reasoning": "Normative reasoning",
 }
 
 _REQUIRED_FIELDS = ("id", "category", "prompt", "prompt_gloss", "reference", "reference_gloss")
